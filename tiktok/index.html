@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' https://i.ytimg.com data:; style-src 'self'; frame-src https://www.youtube-nocookie.com; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests; script-src 'sha256-eXCHCdwt+Sy1rKmqBRtNV6LeQ34xM6VPXp4JKdPsnBU='">
+  <meta name="referrer" content="no-referrer">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Connexion TikTok · D production</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <main class="wrap doc">
+    <h1>Connexion TikTok</h1>
+    <p id="msg">Autorisation reçue. Copie l'adresse complète de cette page et colle-la dans l'outil de connexion.</p>
+    <div class="code" id="code"></div>
+  </main>
+  <script>
+    var p = new URLSearchParams(location.search);
+    var el = document.getElementById("code");
+    if (p.get("error")) {
+      document.getElementById("msg").textContent = "TikTok a refusé l'autorisation : " + (p.get("error_description") || p.get("error"));
+    } else if (p.get("code")) {
+      el.textContent = location.href;
+    } else {
+      document.getElementById("msg").textContent = "Cette page sert à relier l'outil D production Publisher à TikTok.";
+    }
+  </script>
+</body>
+</html>
